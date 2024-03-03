@@ -52,6 +52,10 @@ function App() {
     else setNotes(notesRAW);
   }
 
+  function onNoteAddedHandler(newNote) {
+    setNotes([...notes, newNote])
+  }
+
   return (
     <>
       <h1>Application Notes</h1>
