@@ -31,6 +31,9 @@ function App() {
     const noteRawNewValues = ArrayLib.remove(notesRAW, noteToDelete);
     notesRAWSetter(noteRawNewValues);
     updateFiltered(noteRawNewValues);
+    const noteRawNewValues = ArrayLib.remove(notesRAW, noteToDelete);
+    notesRAWSetter(noteRawNewValues);
+    updateFiltered(noteRawNewValues);
   }
 
   function onNoteAddedHandler(newNote) {
@@ -53,7 +56,13 @@ function App() {
   }
 
   function onNoteAddedHandler(newNote) {
-    setNotes([...notes, newNote])
+    const noteRawNewValues = [...notesRAW, newNote];
+    notesRAWSetter(noteRawNewValues);
+    updateFiltered(noteRawNewValues)
+  }
+
+  function updateFiltered(notes) {
+    setNotes([...notes]);
   }
 
   function onFilterChangedHandler(keyword) {
