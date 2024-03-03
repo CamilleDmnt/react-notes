@@ -92,6 +92,14 @@ function App() {
     }
   }
 
+  function onFilterChangedHandler(keyword) {
+    if (keyword.length > 0) {
+      setNotes(notes.filter(note => note.text.includes(keyword)));
+    } else {
+      setNotes(notesRAW);
+    }
+  }
+
   return (
     <>
       <h1>Application Notes</h1>
