@@ -13,7 +13,6 @@ import NoteList from './components/NoteList'
 import AddNoteForm from './components/AddNoteForm'
 
 function App() {
-
   // Déclaration des états du composant.
   const [notesRAW, setNotesRAW] = useState([]);
   const [notes, setNotes] = useState([...notesRAW]);
@@ -74,6 +73,21 @@ function App() {
     }
   }
 
+  const [notesRAW, notesRAWSetter] = useState([...pureNotes]);
+
+  const [notes, setNotes] = useState([...notesRAW]);
+
+
+  const [filters, filtersSetter] = useState(
+    {keyword: ''}
+  );
+
+  function onRemoveBtnHandler(noteToDelete) {
+    const noteRawNewValues = ArrayLib.remove(notesRAW, noteToDelete);
+    notesRAWSetter(noteRawNewValues);
+    updateFiltered(noteRawNewValues);
+  }
+
   function onNoteAddedHandler(newNote) {
     const noteRawNewValues = [...notesRAW, newNote];
     notesRAWSetter(noteRawNewValues);
@@ -93,11 +107,12 @@ function App() {
   }
 
   function onFilterChangedHandler(keyword) {
-    if (keyword.length > 0) {
-      setNotes(notes.filter(note => note.text.includes(keyword)));
-    } else {
-      setNotes(notesRAW);
-    }
+    console.log('filters: ', keyword)
+    filtersSetter({
+      keyword: keyword
+    });
+    if (keyword.length > 0) setNotes(notesRAW.filter(n => n.text.includes(keyword)));
+    else setNotes(notesRAW);
   }
 
   return (
