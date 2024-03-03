@@ -73,15 +73,6 @@ function App() {
     }
   }
 
-  const [notesRAW, notesRAWSetter] = useState([...pureNotes]);
-
-  const [notes, setNotes] = useState([...notesRAW]);
-
-
-  const [filters, filtersSetter] = useState(
-    {keyword: ''}
-  );
-
   function onRemoveBtnHandler(noteToDelete) {
     const noteRawNewValues = ArrayLib.remove(notesRAW, noteToDelete);
     notesRAWSetter(noteRawNewValues);
