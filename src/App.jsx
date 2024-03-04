@@ -58,6 +58,10 @@ function App() {
     { keyword: '' }
   );
 
+  function noteFilter() {
+    returnnotesRAW.filter(n => n.text.includes(filters.keyword));
+  } 
+
   function onRemoveBtnHandler(noteToDelete) {
     const noteRawNewValues = ArrayLib.remove(notesRAW, noteToDelete);
     notesRAWSetter(noteRawNewValues);
@@ -79,7 +83,7 @@ function App() {
     filtersSetter({
       keyword: keyword
     });
-    if (keyword.length > 0) setNotes(notesRAW.filter(n => n.text.includes(keyword)));
+    if (keyword.length > 0) setNotes(notesRAW.filter(n => n.text.toLowerCase().includes(keyword)));
     else setNotes(notesRAW);
   }
 
