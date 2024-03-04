@@ -44,9 +44,13 @@ function App() {
   const [adding, setAdding] = useState(false);
 
   useEffect(() => {
-    console.log('adding changed effect');
+    console.log('adding changed effect', adding);
     if(adding === true) {
       console.log('we should send new note to api server');
+      fetch('http://localhost:3000/notes' ,{
+        methode :'POST',
+        body:JSON.stringify({})
+      });
     }
   }, [adding]);
 
@@ -75,12 +79,14 @@ function App() {
     const noteRawNewValues = ArrayLib.remove(notesRAW, noteToDelete);
     notesRAWSetter(noteRawNewValues);
     updateFiltered(noteRawNewValues);
+    
   }
 
   function onNoteAddedHandler(newNote) {
     const noteRawNewValues = [...notesRAW, newNote];
     notesRAWSetter(noteRawNewValues);
-    updateFiltered(noteRawNewValues)
+    updateFiltered(noteRawNewValues);
+    setAdding(true);
   }
 
   function updateFiltered(notes) {
