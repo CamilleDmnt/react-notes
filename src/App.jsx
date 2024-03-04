@@ -40,6 +40,15 @@ function App() {
         setNotes(data);
       });
   }, []);
+  
+  const [adding, setAdding] = useState(false);
+
+  useEffect(() => {
+    console.log('adding changed effect');
+    if(adding === true) {
+      console.log('we should send new note to api server');
+    }
+  }, [adding]);
 
 
 
@@ -58,9 +67,9 @@ function App() {
     { keyword: '' }
   );
 
-  function noteFilter() {
-    returnnotesRAW.filter(n => n.text.includes(filters.keyword));
-  } 
+  // function noteFilter() {
+  //   returnnotesRAW.filter(n => n.text.includes(filters.keyword));
+  // } 
 
   function onRemoveBtnHandler(noteToDelete) {
     const noteRawNewValues = ArrayLib.remove(notesRAW, noteToDelete);
